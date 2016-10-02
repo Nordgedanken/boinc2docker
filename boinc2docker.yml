@@ -1,4 +1,5 @@
 appname: boinc2docker
+gpu_appname: boinc2docker_cuda
 appver: "1.06" # appver must be bumped up any time iso or vboxwrapper versions change
 iso: "1.0.0"
 vboxwrapper:
