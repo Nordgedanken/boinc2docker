@@ -15,6 +15,8 @@
         <vm_accel_required/>
         <cuda/>
         <min_vbox_version>30200</min_vbox_version>
+        <min_ncpus>1</min_ncpus>
+        <max_threads>32</max_threads>
         <gpu_type>NVIDIA</gpu_type>
     </plan_class>
 </plan_classes>
