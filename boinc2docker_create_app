@@ -91,7 +91,6 @@ args = attrdict(defaults,**vars(parser.parse_args()))
 if args['boinc2docker.yml'] is not None:
     args.update(yaml.load(open(args['boinc2docker.yml'])))
 if args.resultsdir is None:
-    args.resultsdir = join('/results',args.appname)
 if not args.projhome: raise ValueError("Please specify either --projhome option or $PROJHOME variable")
 for x in args.dont_install:
     if x not in ['template_in','template_out','assimilator']:
@@ -146,6 +145,7 @@ for t in ['in','out']:
     if fmt('template_{t}') not in args.dont_install:
         copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
              join(args.projhome,'templates',fmt('{args.appname}_{t}')))
+             join(args.projhome,'templates',fmt('{args.appname}_cuda_{t}')))
 copy(join(rootdir,'bin','boinc2docker_create_work.py'),join(args.projhome,'bin'))
 if "assimilator" not in args.dont_install:
     assimilator_file=join(args.projhome,'bin',fmt('{args.appname}_assimilator'))
