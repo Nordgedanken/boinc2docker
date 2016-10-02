@@ -9,10 +9,11 @@
         <max_threads>32</max_threads>
     </plan_class>
     <plan_class>
-        <name>cuda32</name>
+        <name>cuda</name>
         <virtualbox/>
         <is64bit/>
         <vm_accel_required/>
+        <cuda/>
         <min_vbox_version>30200</min_vbox_version>
         <gpu_type>NVIDIA</gpu_type>
     </plan_class>
