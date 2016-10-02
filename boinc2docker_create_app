@@ -130,7 +130,7 @@ for platform in platforms:
 
 #GPU
 for platform in platforms:
-    appfolder = join(gpu_approot,platform+'__vbox64_cuda')
+    appfolder = join(gpu_approot,platform+'__cuda')
     makedirs(appfolder)
     vboxwrapper_file = get_vboxwrapper(platform)
     iso_file = get_iso()
