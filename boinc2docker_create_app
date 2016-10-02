@@ -107,7 +107,7 @@ platforms = ["x86_64-pc-linux-gnu","windows_x86_64",  "x86_64-apple-darwin"]
 if isinstance(args.vboxwrapper,str):
     args.vboxwrapper = {platform:args.vboxwrapper for platform in platforms}
 
-
+#CPU
 for platform in platforms:
     appfolder = join(approot,platform+'__vbox64_mt')
     makedirs(appfolder)
@@ -123,7 +123,22 @@ for platform in platforms:
     copy(vboxwrapper_file,appfolder)
     copy(iso_file,appfolder)
 
+#GPU
+for platform in platforms:
+    appfolder = join(approot,platform+'__vbox64_cuda')
+    makedirs(appfolder)
+    vboxwrapper_file = get_vboxwrapper(platform)
+    iso_file = get_iso()
 
+    #version.xml
+    open(join(appfolder,'version.xml'),'w').write(
+        open(join(rootdir,'version.xml')).read().format(vboxwrapper=basename(vboxwrapper_file),iso=basename(iso_file))
+    )
+
+    #vboxwrapper and ISO
+    copy(vboxwrapper_file,appfolder)
+    copy(iso_file,appfolder)
+    
 # project files
 for d in ['bin','templates']: makedirs(join(args.projhome,d))
 copy_tree(join(rootdir,'py'),join(args.projhome,'py'))
