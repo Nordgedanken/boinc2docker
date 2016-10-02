@@ -30,8 +30,13 @@
     </app>
     
     <app>
-        <name>{args.gpu_appname}</name>
-        <user_friendly_name>{args.gpu_appname}</user_friendly_name>
+        <name>{args.cuda_appname}</name>
+        <user_friendly_name>{args.cuda_appname}</user_friendly_name>
+    </app>
+    
+    <app>
+        <name>{args.ati_appname}</name>
+        <user_friendly_name>{args.ati_appname}</user_friendly_name>
     </app>
 
 </boinc>
