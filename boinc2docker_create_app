@@ -73,9 +73,12 @@ args = [
     ['projhome',        'project home'],
     ['appname',         'name to give the app'],
     ['gpu_appname',     'name to give the gpu app'],
+    ['cuda_appname',     'name to give the gpu app'],
+    ['ati_appname',     'name to give the gpu app'],
     ['appver',          'version to give the app'],
     ['resultsdir',      'where to assimilate results to (default: /results/APPNAME)'],
-    ['gpu_resultsdir',  'where to assimilate results from gpu to (default: /results/APPNAME)'],
+    ['cuda_resultsdir',  'where to assimilate results from gpu to (default: /results/APPNAME)'],
+    ['ati_resultsdir',  'where to assimilate results from gpu to (default: /results/APPNAME)'],
     ['tmpdir',          "where to store downloaded ISO and vboxwrapper exe's"],
     ['dont_install',    'one or more of ["template_in","template_out","assimilator"'],
 ]
@@ -94,8 +97,10 @@ if args['boinc2docker.yml'] is not None:
     args.update(yaml.load(open(args['boinc2docker.yml'])))
 if args.resultsdir is None:
     args.resultsdir = join('/results',args.appname)
-if args.gpu_resultsdir is None:
-    args.gpu_resultsdir = join('/results',args.gpu_appname)
+if args.ati_resultsdir is None:
+    args.ati_resultsdir = join('/results',args.ati_appname)
+if args.cuda_resultsdir is None:
+    args.cuda_resultsdir = join('/results',args.cuda_appname)
 if not args.projhome: raise ValueError("Please specify either --projhome option or $PROJHOME variable")
 for x in args.dont_install:
     if x not in ['template_in','template_out','assimilator']:
@@ -128,9 +133,10 @@ for platform in platforms:
     copy(vboxwrapper_file,appfolder)
     copy(iso_file,appfolder)
 
-#GPU
+###GPU
+#Cuda
 for platform in platforms:
-    appfolder = join(gpu_approot,platform+'__cuda')
+    appfolder = join(cuda_approot,platform+'__cuda')
     makedirs(appfolder)
     vboxwrapper_file = get_vboxwrapper(platform)
     iso_file = get_iso()
@@ -144,6 +150,21 @@ for platform in platforms:
     copy(vboxwrapper_file,appfolder)
     copy(iso_file,appfolder)
 
+for platform in platforms:
+    appfolder = join(ati_approot,platform+'__ati')
+    makedirs(appfolder)
+    vboxwrapper_file = get_vboxwrapper(platform)
+    iso_file = get_iso()
+
+    #version.xml
+    open(join(appfolder,'version.xml'),'w').write(
+        open(join(rootdir,'version.xml')).read().format(vboxwrapper=basename(vboxwrapper_file),iso=basename(iso_file))
+    )
+
+    #vboxwrapper and ISO
+    copy(vboxwrapper_file,appfolder)
+    copy(iso_file,appfolder)    
+
 # project files
 for d in ['bin','templates']: makedirs(join(args.projhome,d))
 copy_tree(join(rootdir,'py'),join(args.projhome,'py'))
@@ -151,7 +172,7 @@ for t in ['in','out']:
     if fmt('template_{t}') not in args.dont_install:
         copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
              join(args.projhome,'templates',fmt('{args.appname}_{t}')))
-        copy(join(rootdir,fmt('templates/boinc2docker_cuda_{t}')),
+        copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
              join(args.projhome,'templates',fmt('{args.gpu_appname}_{t}')))
 copy(join(rootdir,'bin','boinc2docker_create_work.py'),join(args.projhome,'bin'))
 copy(join(rootdir,'bin','boinc2docker_create_work_gpu.py'),join(args.projhome,'bin'))
