@@ -173,7 +173,9 @@ for t in ['in','out']:
         copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
              join(args.projhome,'templates',fmt('{args.appname}_{t}')))
         copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
-             join(args.projhome,'templates',fmt('{args.gpu_appname}_{t}')))
+             join(args.projhome,'templates',fmt('{args.cuda_appname}_{t}')))
+        copy(join(rootdir,fmt('templates/boinc2docker_{t}')),
+             join(args.projhome,'templates',fmt('{args.ati_appname}_{t}')))
 copy(join(rootdir,'bin','boinc2docker_create_work.py'),join(args.projhome,'bin'))
 copy(join(rootdir,'bin','boinc2docker_create_work_gpu.py'),join(args.projhome,'bin'))
 if "assimilator" not in args.dont_install:
