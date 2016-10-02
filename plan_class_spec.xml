@@ -19,4 +19,14 @@
         <max_threads>32</max_threads>
         <gpu_type>NVIDIA</gpu_type>
     </plan_class>
+    <plan_class>
+        <name>ati</name>
+        <virtualbox/>
+        <is64bit/>
+        <vm_accel_required/>
+        <min_vbox_version>30200</min_vbox_version>
+        <min_ncpus>1</min_ncpus>
+        <max_threads>32</max_threads>
+        <gpu_type>amd</gpu_type>
+    </plan_class>
 </plan_classes>
