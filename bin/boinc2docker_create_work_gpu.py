@@ -21,7 +21,7 @@ from tempfile import mkdtemp
 def boinc2docker_create_work(image,
                              command=None,
                              input_files=None,
-                             appname='boinc2docker',
+                             appname='boinc2docker_gpu',
                              entrypoint=None,
                              prerun=None,
                              postrun=None,
