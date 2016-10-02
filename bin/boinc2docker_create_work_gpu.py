@@ -21,7 +21,7 @@ from tempfile import mkdtemp
 def boinc2docker_create_work(image,
                              command=None,
                              input_files=None,
-                             appname='boinc2docker_gpu',
+                             appname='boinc2docker_cuda',
                              entrypoint=None,
                              prerun=None,
                              postrun=None,
@@ -258,7 +258,7 @@ def escape_string(s):
 
 if __name__=='__main__':
 
-    parser = argparse.ArgumentParser(prog='boinc2docker_create_work')
+    parser = argparse.ArgumentParser(prog='boinc2docker_create_work_gpu')
 
     #docker args
     parser.add_argument('IMAGE', help='Docker image to run')
@@ -266,7 +266,7 @@ if __name__=='__main__':
     parser.add_argument('--entrypoint', help='Overwrite the default ENTRYPOINT of the image')
 
     #BOINC args
-    parser.add_argument('--appname', default='boinc2docker', help='appname (default: boinc2docker)')
+    parser.add_argument('--appname', default='boinc2docker_cuda', help='appname (default: boinc2docker_cuda)')
     parser.add_argument('--memory', type=int, help='memory in MB needed by this job (default: minimum needed to load Docker image)')
     parser.add_argument('--native_unzip', action='store_true', help="Let the BOINC client unzip image files (Warning: may cause job to fail, pending BOINC client bug fix)")
     add_create_work_args(parser,exclude=['wu_template'])
