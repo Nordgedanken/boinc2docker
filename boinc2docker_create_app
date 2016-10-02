@@ -91,6 +91,7 @@ args = attrdict(defaults,**vars(parser.parse_args()))
 if args['boinc2docker.yml'] is not None:
     args.update(yaml.load(open(args['boinc2docker.yml'])))
 if args.resultsdir is None:
+    args.resultsdir = join('/results',args.appname)
 if not args.projhome: raise ValueError("Please specify either --projhome option or $PROJHOME variable")
 for x in args.dont_install:
     if x not in ['template_in','template_out','assimilator']:
@@ -137,7 +138,7 @@ for platform in platforms:
     #vboxwrapper and ISO
     copy(vboxwrapper_file,appfolder)
     copy(iso_file,appfolder)
-    
+
 # project files
 for d in ['bin','templates']: makedirs(join(args.projhome,d))
 copy_tree(join(rootdir,'py'),join(args.projhome,'py'))
