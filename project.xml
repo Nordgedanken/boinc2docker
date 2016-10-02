@@ -28,5 +28,10 @@
         <name>{args.appname}</name>
         <user_friendly_name>{args.appname}</user_friendly_name>
     </app>
+    
+    <app>
+        <name>{args.gpu_appname}</name>
+        <user_friendly_name>{args.gpu_appname}</user_friendly_name>
+    </app>
 
 </boinc>
