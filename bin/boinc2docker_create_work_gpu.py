@@ -276,7 +276,7 @@ if __name__=='__main__':
 
 
     args = parser.parse_args()
-    appname=array(['boinc2docker_cuda','boinc2docker_ati'])
+    appname=['boinc2docker_cuda','boinc2docker_ati']
     for i in appname
       wu = boinc2docker_create_work(image=args.IMAGE, 
                                     command=args.COMMAND, 
