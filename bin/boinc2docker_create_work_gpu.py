@@ -277,14 +277,14 @@ if __name__=='__main__':
 
     args = parser.parse_args()
     appname=['boinc2docker_cuda','boinc2docker_ati']
-    for i in appname
-      wu = boinc2docker_create_work(image=args.IMAGE, 
-                                    command=args.COMMAND, 
-                                    appname=i,
-                                    entrypoint=args.entrypoint,
-                                    native_unzip=args.native_unzip,
-                                    memory=args.memory,
-                                    create_work_args=read_create_work_args(args),
-                                    verbose=(not args.quiet),
-                                    force_reimport=args.force_reimport)
-      if wu is not None: print wu
+    for i in appname:
+        wu = boinc2docker_create_work(image=args.IMAGE, 
+                                      command=args.COMMAND, 
+                                      appname=i,
+                                      entrypoint=args.entrypoint,
+                                      native_unzip=args.native_unzip,
+                                      memory=args.memory,
+                                      create_work_args=read_create_work_args(args),
+                                      verbose=(not args.quiet),
+                                      force_reimport=args.force_reimport)
+        if wu is not None: print wu
