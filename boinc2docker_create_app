@@ -180,20 +180,9 @@ copy(join(rootdir,'bin','boinc2docker_create_work.py'),join(args.projhome,'bin')
 copy(join(rootdir,'bin','boinc2docker_create_work_gpu.py'),join(args.projhome,'bin'))
 if "assimilator" not in args.dont_install:
     assimilator_file=join(args.projhome,'bin',fmt('{args.appname}_assimilator'))
-    assimilator_file_cuda=join(args.projhome,'bin',fmt('{args.cuda_appname}_assimilator'))
-    assimilator_file_ati=join(args.projhome,'bin',fmt('{args.ati_appname}_assimilator'))
     open(assimilator_file,'w').write(
-        open(join(rootdir,'bin','{args.appname}_assimilator')).read().replace('{results}',args.resultsdir)
+        open(join(rootdir,'bin','boinc2docker_assimilator')).read().replace('{results}',args.resultsdir)
     )
-    chmod(assimilator_file,0755)
-    open(assimilator_file_cuda,'w').write(
-        open(join(rootdir,'bin','{args.cuda_appname}_assimilator')).read().replace('{results}',args.resultsdir)
-    )
-    chmod(assimilator_file_cuda,0755)
-    open(assimilator_file_ati,'w').write(
-        open(join(rootdir,'bin','{args.ati_appname}_assimilator')).read().replace('{results}',args.resultsdir)
-    )
-    chmod(assimilator_file_ati,0755)
 
 
 # merge stuff into plan_class_spec.xml and project.xml
