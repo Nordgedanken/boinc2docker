@@ -21,7 +21,7 @@ from tempfile import mkdtemp
 def boinc2docker_create_work(image,
                              command=None,
                              input_files=None,
-                             appname=array(['boinc2docker_cuda','boinc2docker_ati']),
+                             appname=['boinc2docker_cuda','boinc2docker_ati'],
                              entrypoint=None,
                              prerun=None,
                              postrun=None,
